@@ -123,7 +123,7 @@ namespace API.Controllers
                 product.Name = productdto.Name;
                 product.Price = productdto.Price;
                 product.Description = productdto.Description;
-                product.QuantityInStock = productdto.QuantityInStock;
+                product.Available = productdto.Available;
                 product.ImagePath = dbPath;
                 await _products.Add(product);
                 await _products.Save();

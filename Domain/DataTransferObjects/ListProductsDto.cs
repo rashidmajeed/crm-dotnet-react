@@ -7,7 +7,6 @@ namespace Domain.DataTransferObjects
         public string Description { get; set; }
         public string ImagePath { get; set; }
         public decimal Price { get; set; }
-        public int QuantityInStock { get; set; }
-
+        public string Available { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Domain.DataTransferObjects
         public string ImagePath { get; set; }
         public IFormFile Image { get; set; }
         public decimal Price { get; set; }
-        public int QuantityInStock { get; set; }
+        public string Available { get; set; }
 
     }
 }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Domain.DataTransferObjects
 {
     public class ClientDto
@@ -9,6 +11,6 @@ namespace Domain.DataTransferObjects
         public string PhoneNumber { get; set; }
         public string Location { get; set; }
         public int OrderId { get; set; }
-        public OrderDto Orders { get; set; }
+        public ICollection<OrderDto> Orders { get; set; }
     }
 }
