@@ -11,22 +11,23 @@ function ClientList() {
   // clients = state, saveClients = function to save the state
   const [clients, saveClients] = useState([]);
 
-  // Query to the API
+ 
+  // use effect is similar to componentdidmount 
+  useEffect(() => {
+     // Query to the API
   const ConsumeAPI = async () => {
     const fetchClients = await clientAxios.get('/api/Clients');
     saveClients(fetchClients.data);
-  };
-  // use effect is similar to componentdidmount 
-  useEffect(() => {
+  }
     ConsumeAPI();
-  }, []);
+  }, [clients]);
   return (
     <Fragment>
       <h2>Clients</h2>
       <Link to={"/clients/create"} className="btn btn-green new-client">
         <i className="fas fa-plus-circle"></i>
                 Create Client
-            </Link>
+      </Link>
       <ul className="list-clients">
         {clients.map(client =>
           <Client key={client.id} Client={client}

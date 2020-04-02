@@ -1,9 +1,11 @@
 import React, { Fragment, useState } from 'react';
+import { withRouter } from 'react-router-dom'; 
 
 // importing backend API 
 import clientAxios from '../../config/axios';
+import Swal from 'sweetalert2';
 
-function CreateClient() {
+function CreateClient({history}) {
 
   // client = state, saveclient = function to save the state
   const [client, saveClient] = useState({
@@ -22,8 +24,6 @@ function CreateClient() {
       ...client,
       [e.target.name]: e.target.value
     })
-
-    console.log(client);
   }
 
    // Add a new client in the REST API
@@ -33,7 +33,22 @@ function CreateClient() {
     // Send request
     clientAxios.post('/api/Clients', client)
       .then(res => {
-        console.log(res);
+    // validate if there are backend error
+         if(res.data.code === 11000) {
+          Swal.fire({
+              type: 'error',
+              title: 'There was an error',
+              text: 'Client is already registered'
+          })
+      } else {
+          Swal.fire(
+              'Client is successfully Added',
+              res.data.message,
+              'success'
+          )
+      }
+      // Redirect
+      history.push('/');
       });
   }
 
@@ -112,4 +127,4 @@ function CreateClient() {
   );
 }
 
-export default CreateClient;
+export default withRouter(CreateClient);
